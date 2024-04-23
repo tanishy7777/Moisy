@@ -48,16 +48,54 @@ var gateway = `ws://192.168.199.144/ws`;
 var websocket;
 window.addEventListener('load', onload);
 
+const registerServiceWorker = async () => {
+    if ("serviceWorker" in navigator) {
+        const registration = await navigator.serviceWorker.register("./serviceWorker.js");
+        return registration;
+    }
+}
+
+const checkPermission = () => {
+    if(!("Notification" in window)){
+        console.log("Notification not supported in this browser");
+        alert("Notification not supported in this browser");
+        return;
+    }
+}
+
+const requestNotificationPermission = async () => {  
+    const permission = await window.Notification.requestPermission();
+    if (permission !== "granted") {
+      alert("Permission not granted for Notification");
+    }
+}
+
+const main = async () => {
+    checkPermission();
+    requestNotificationPermission();
+    const reg = await registerServiceWorker();
+    reg.showNotification("Gas leak detected");
+}
+
+
+
+
 function onload(event) {
     initWebSocket();
-    navigator.serviceWorker
-        .register("/serviceWorker.js")
-        .then(res => console.log("service worker registered"))
-        .catch(err => console.log("service worker not registered", err))
+  //  registerServiceWorker();
+   // requestNotificationPermission();
 }
 
 window.addEventListener("load", onload)
 
+
+  
+//navigator.serviceWorker
+//.register("/serviceWorker.js")
+//.then(res => console.log("service worker registered"))
+//.catch(err => console.log("service worker not registered", err))
+  
+  
 
 
 
@@ -92,6 +130,12 @@ function onMessage(event) {
     var key = "message";
     plotter(parseInt(myObj[key]));
     document.getElementById("humidity").innerHTML = myObj[key];
+
+    if(parseInt(myObj[key]) > 50){
+        console.log("Gas Leak detected");
+        main();
+
+    }
 }
 
 function plotter(data) {
