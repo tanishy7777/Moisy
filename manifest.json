@@ -1,0 +1,9 @@
+{
+    "name": "Moisy",
+    "short_name": "Moisy",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#de0841",
+    "theme_color": "#db4938",
+    "orientation": "portrait-primary"
+  }

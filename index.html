@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ESP IOT DASHBOARD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+    <meta name="theme-color" content="#db4938" />
 </head>
+
 <body>
-    Hello World from VVVENKATTTT
+    <div class="topnav">
+        <h1>Moisy</h1>
+    </div>
+    <div class="content">
+        <div class="card-grid">
+            <div class="card">
+                <p class="card-title"> Humidity</p>
+                <p class="reading"><span id="humidity"></span> &percnt;</p>
+            </div>
+            <div class="graphCard">
+                <p class="card-title"> Graph</p>
+                <!-- <p class="reading"><span id="graph"></span> actual graph here</p> -->
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
