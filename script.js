@@ -14,6 +14,8 @@
 //     scrollZoom: true
 // }]);
 
+
+
 var layout = {
     showlegend: false,
 
@@ -69,10 +71,11 @@ const requestNotificationPermission = async () => {
       alert("Permission not granted for Notification");
     }
 }
+requestNotificationPermission();
+
 
 const main = async () => {
     checkPermission();
-    requestNotificationPermission();
     const reg = await registerServiceWorker();
     reg.showNotification("Gas leak detected");
 }
