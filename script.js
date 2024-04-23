@@ -43,7 +43,7 @@ Plotly.newPlot('chart', data, layout, config);
 
 
 
-var gateway = `ws://192.168.199.144/ws`;
+var gateway = `wss://192.168.199.144/ws`;
 
 var websocket;
 window.addEventListener('load', onload);
@@ -51,17 +51,14 @@ window.addEventListener('load', onload);
 function onload(event) {
     initWebSocket();
     navigator.serviceWorker
-    .register("/serviceWorker.js")
-    .then(res => console.log("service worker registered"))
-    .catch(err => console.log("service worker not registered", err))
+        .register("/serviceWorker.js")
+        .then(res => console.log("service worker registered"))
+        .catch(err => console.log("service worker not registered", err))
 }
 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", onload)
-}else{
-    console.log("service worker not supported");
-    alert("service worker not supported");
-}
+window.addEventListener("load", onload)
+
+
 
 
 
