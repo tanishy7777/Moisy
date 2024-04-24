@@ -45,7 +45,7 @@ Plotly.newPlot('chart', data, layout, config);
 
 
 
-var gateway = `ws://192.168.199.144/ws`;
+var gateway = `ws://192.168.249.144/ws`;
 
 var websocket;
 window.addEventListener('load', onload);
